@@ -1,0 +1,27 @@
+.name{
+    width: 200px;
+    height: 25px;
+    float: left;
+    margin-left: 40px;
+}
+.stateChoose{
+    width:100px ;
+}
+.select{
+    width: 100px;
+    height: 25px;
+    float: left;
+    margin-left: 40px;
+}
+.buttonArea{
+    width: 800px;
+    margin-top: 40px;
+    float: left;
+    margin-left: 40px;
+}
+.tableArea{
+    width: 1200px;
+    margin-top: 40px;
+    float: left;
+    margin-left: 40px;
+}

@@ -1,10 +1,8 @@
-import {Input, Switch, Select, Button} from "antd";
+import {Input, Switch, Select, Button, DatePicker} from "antd";
 import "./index.css"
-import Inputs from "./infoComponents/input";
-import DateChoose from "./infoComponents/dateChoose";
-import Textarea from "./infoComponents/textarea";
 import * as React from "react";
 import {useRef, useState} from "react";
+import {Option} from "antd/es/mentions";
 
 
 
@@ -25,8 +23,18 @@ function Management() {
     }
     return(
         <div>
-            <div>{Inputs("标签名称")}</div>
-            <div>{Inputs("标签编码")}</div>
+            <div className={"basicInfo"}>
+                <div>
+                    <b className={"must"}>*</b><b className={"title"}>标签名称</b>
+                </div>
+                <Input className={"infoInput"}/>
+            </div>
+            <div className={"basicInfo"}>
+                <div>
+                    <b className={"must"}>*</b><b className={"title"}>标签编码</b>
+                </div>
+                <Input className={"infoInput"}/>
+            </div>
             <div className={"basicInfo"}>
                 <div>
                    <b className={"title"}>标签值</b>
@@ -51,17 +59,32 @@ function Management() {
                 <Select className={"classType"} onChange={()=>{
                     showTimeSelect();
                 }} defaultValue={"Y"}>
-                    <Select.Option key={"Y"}>永久</Select.Option>
-                    <Select.Option key={"G"}>固定期限</Select.Option>
+                    <Option value={"Y"}>永久</Option>
+                    <Option key={"G"}>固定期限</Option>
                 </Select>
             </div>
                 <div className={"timeArea"} ref={timeArea}>
-                    {DateChoose("起始日期","请选择起始日期")}
-                    {DateChoose("截止日期","请选择截止日期")}
+                    <div className={"timeChoose"}>
+                        <div>
+                            <b className={"must"}>*</b><b className={"title"}>起始日期</b>
+                        </div>
+                        <DatePicker className={"infoInput"} placeholder={"请选择起始日期"}/>
+                    </div>
+                    <div className={"timeChoose"}>
+                        <div>
+                            <b className={"must"}>*</b><b className={"title"}>截止日期</b>
+                        </div>
+                        <DatePicker className={"infoInput"} placeholder={"请选择截止日期"}/>
+                    </div>
                 </div>
             </div>
             <div className={"describeArea"}>
-            <Textarea/>
+                <div className={"textarea"}>
+                    <div>
+                        <b className={"must"}>*</b><b className={"title"}>描述</b>
+                    </div>
+                    <textarea className={"describe"}/>
+                </div>
             </div>
             <div className={"buttonArea"}>
                 <Button type={"primary"} className={"button"}>提交</Button>
