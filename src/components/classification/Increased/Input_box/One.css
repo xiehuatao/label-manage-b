@@ -1,0 +1,27 @@
+
+.All_One{
+    width: 250px;
+    height: 70px;
+    display: inline-block;
+}
+
+.title_One{
+    height: 20px;
+}
+.Star_One{
+    color: red;
+    position: relative;
+top: 2px;
+    display: inline-block;
+}
+.Type_One{
+    height: 30px;
+    line-height: 30px;
+    display: inline-block;
+}
+.Intput_One{
+    position: relative;
+    width: 242px;
+    height: 25px;
+    top: -20px;
+}

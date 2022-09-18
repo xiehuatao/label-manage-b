@@ -1,0 +1,17 @@
+.Star_Two{
+    color: red;
+    position: relative;
+    top: 3px;
+    display: inline-block;
+}
+.Type_Two{
+    height: 30px;
+    line-height: 30px;
+    display: inline-block;
+}
+.Intput_Two{
+    position: relative;
+    width: 585px;
+    height: 84px;
+    top: -20px;
+}

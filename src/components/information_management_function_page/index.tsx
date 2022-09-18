@@ -25,8 +25,8 @@ function Management() {
     }
     return(
         <div>
-            {Inputs("标签名称")}
-            {Inputs("标签编码")}
+            <div>{Inputs("标签名称")}</div>
+            <div>{Inputs("标签编码")}</div>
             <div className={"basicInfo"}>
                 <div>
                    <b className={"title"}>标签值</b>
