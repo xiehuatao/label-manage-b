@@ -1,7 +1,7 @@
 import React from 'react';
 import NavigationBar from "../../../components/NavigationBar/NavigationBar";
 import classify from './Classify.module.css';
-import { Button,Input,Switch,Table,Space,Tag  } from 'antd';
+import { Button,Input,Switch,Table} from 'antd';
 import {Route} from "react-router-dom";
 import ManagementPage from "../../../components/information_management_page";
 
@@ -33,7 +33,6 @@ const Search = ()=>{
             <ClassifyName/>
             <ClassifyEncoded/>
             <Status/>
-            {/*<button style={{position:"absolute",left:830,top:27,width:66,height:27}}>搜索</button>*/}
             <Button type="primary" style={{position:"absolute",left:830,top:22,width:75,height:35}}>搜索</Button>
         </div>
     )
@@ -45,7 +44,6 @@ const ClassifyName= ()=>{
             <span >
                 <label className={classify.searchTitleFont}>类型</label>
                 <br/>
-                {/*<input type="text" style={{width:232,height:30}}/>*/}
                 <Input style={{width:232,height:30,borderColor:"black"}}/>
             </span>
         </div>
@@ -57,7 +55,6 @@ const ClassifyEncoded= ()=>{
             <span >
                 <label className={classify.searchTitleFont}>编码</label>
                 <br/>
-                {/*<input type="text" style={{width:232,height:30}}/>*/}
                 <Input style={{width:232,height:30,borderColor:"black"}}/>
             </span>
         </div>

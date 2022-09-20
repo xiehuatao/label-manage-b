@@ -2,6 +2,10 @@ import {Button, Input, Select, Switch, Table} from "antd";
 import "./index.css"
 import {Option} from "antd/es/mentions";
 import * as React from "react";
+import Name from "./styled/Name";
+import Title from "../information_management_function_page/styled/Title";
+import Selects from "./styled/Select";
+import ButtonAre from "./styled/Buttonare";
 
 const ManagementPage = () => {
     const columns=[
@@ -48,19 +52,19 @@ const ManagementPage = () => {
     ]
     return(
       <div>
-          <div className={"name"}>
+          <Name>
           <div>
-              <b className={"title"}>名称</b>
+              <Title>名称</Title>
           </div>
              <Input className={"infoInput"}/>
-         </div>
-          <div className={"name"}>
+         </Name>
+          <Name>
               <div>
-                <b>编码</b>
+                <Title>编码</Title>
               </div>
               <Input/>
-          </div>
-          <div className={"select"}>
+          </Name>
+          <Selects>
             <div>
                 <b>等级</b>
             </div>
@@ -72,8 +76,8 @@ const ManagementPage = () => {
                <Option value={"two"}>二级</Option>
                <Option value={"three"}>三级</Option>
            </Select>
-        </div>
-          <div className={"select"}>
+        </Selects>
+          <Selects>
               <div>
                   <b>上级标签</b>
               </div>
@@ -82,8 +86,8 @@ const ManagementPage = () => {
               <Select className={"stateChoose"} defaultValue={" "}>
 
               </Select>
-          </div>
-          <div className={"select"}>
+          </Selects>
+          <Selects>
               <div>
                   <b>类型</b>
               </div>
@@ -94,8 +98,8 @@ const ManagementPage = () => {
                   <Option value={"one"}>普通标签</Option>
                   <Option value={"two"}>组合标签</Option>
               </Select>
-          </div>
-          <div className={"select"}>
+          </Selects>
+          <Selects>
               <div>
                   <b>所属分类</b>
               </div>
@@ -105,8 +109,8 @@ const ManagementPage = () => {
                   <Option value={"one"}>系统标签</Option>
                   <Option value={"two"}>自定义</Option>
               </Select>
-          </div>
-          <div className={"select"}>
+          </Selects>
+          <Selects>
               <div>
                   <b>状态</b>
               </div>
@@ -117,14 +121,14 @@ const ManagementPage = () => {
                   <Option value={"one"}>禁用</Option>
                   <Option value={"two"}>启用</Option>
               </Select>
-          </div>
-          <div className={"buttonArea"}>
+          </Selects>
+          <ButtonAre>
               <Button type={"primary"} >新增</Button>
               <Button type={"primary"} style={{marginLeft:40}}>添加标签分类</Button>
-          </div>
-          <div className={"tableArea"}>
+          </ButtonAre>
+          <ButtonAre>
               <Table columns={columns} dataSource={dataSouse}></Table>
-          </div>
+          </ButtonAre>
       </div>
   )
 }

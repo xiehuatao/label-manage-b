@@ -3,6 +3,14 @@ import "./index.css"
 import * as React from "react";
 import {useRef, useState} from "react";
 import {Option} from "antd/es/mentions";
+import BasicInfo from "./styled/BasicInfo";
+import Required from "./styled/Required";
+import Title from "./styled/Title";
+import Second from "./styled/Second";
+import ButtonArea from "./styled/ButtonArea";
+import DescribeArea from "./styled/DescribeArea";
+import Describe from "./styled/Describe";
+import TimeArea from "./styled/TimeArea";
 
 
 
@@ -23,38 +31,45 @@ function Management() {
     }
     return(
         <div>
-            <div className={"basicInfo"}>
+            <BasicInfo>
                 <div>
-                    <b className={"must"}>*</b><b className={"title"}>标签名称</b>
+                    <Required>*</Required><Title>标签名称</Title>
                 </div>
                 <Input className={"infoInput"}/>
-            </div>
-            <div className={"basicInfo"}>
+            </BasicInfo>
+            <BasicInfo>
                 <div>
-                    <b className={"must"}>*</b><b className={"title"}>标签编码</b>
+                    <Required>*</Required><Title>标签编码</Title>
                 </div>
                 <Input className={"infoInput"}/>
-            </div>
-            <div className={"basicInfo"}>
+            </BasicInfo>
+
+
+            <BasicInfo>
                 <div>
-                   <b className={"title"}>标签值</b>
+                   <Title>标签值</Title>
                 </div>
                 <Input className={"infoInput"}/>
-            </div>
-            <div className={"basicInfo"}>
+            </BasicInfo>
+
+
+            <BasicInfo>
                 <div>
-                    <b className={"must"}>*</b><b className={"title"}>标签状态</b>
+                    <Required>*</Required><Title>标签状态</Title>
                 </div>
                 <Switch checkedChildren={"启用"} unCheckedChildren={"禁用"} defaultChecked />
-            </div>
-            <div className={"second"}>
-            <div className={"basicInfo"}>
-                <div><b className={"title"}>所属分类</b></div>
+            </BasicInfo>
+
+
+            <Second>
+            <BasicInfo>
+                <div><Title>所属分类</Title></div>
                 <Select className={"classType"} defaultValue={"--"}></Select>
-            </div>
-            <div className={"timeType"} ref={timeType}>
+            </BasicInfo>
+
+            <BasicInfo ref={timeType}>
                 <div>
-                <b className={"must"}>*</b><b className={"title"}>有效期</b>
+                <Required>*</Required><Title>有效期</Title>
                 </div>
                 <Select className={"classType"} onChange={()=>{
                     showTimeSelect();
@@ -62,34 +77,34 @@ function Management() {
                     <Option value={"Y"}>永久</Option>
                     <Option key={"G"}>固定期限</Option>
                 </Select>
-            </div>
-                <div className={"timeArea"} ref={timeArea}>
-                    <div className={"timeChoose"}>
+            </BasicInfo>
+                <TimeArea ref={timeArea}>
+
+                    <BasicInfo>
                         <div>
-                            <b className={"must"}>*</b><b className={"title"}>起始日期</b>
+                            <Required>*</Required><Title>起始日期</Title>
                         </div>
                         <DatePicker className={"infoInput"} placeholder={"请选择起始日期"}/>
-                    </div>
-                    <div className={"timeChoose"}>
+                    </BasicInfo>
+
+                    <BasicInfo>
                         <div>
-                            <b className={"must"}>*</b><b className={"title"}>截止日期</b>
+                            <Required>*</Required><Title>截止日期</Title>
                         </div>
                         <DatePicker className={"infoInput"} placeholder={"请选择截止日期"}/>
-                    </div>
-                </div>
-            </div>
-            <div className={"describeArea"}>
-                <div className={"textarea"}>
+                    </BasicInfo>
+                </TimeArea>
+            </Second>
+            <DescribeArea>
                     <div>
-                        <b className={"must"}>*</b><b className={"title"}>描述</b>
+                        <Required>*</Required><Title>描述</Title>
                     </div>
-                    <textarea className={"describe"}/>
-                </div>
-            </div>
-            <div className={"buttonArea"}>
+                    <Describe/>
+            </DescribeArea>
+            <ButtonArea>
                 <Button type={"primary"} className={"button"}>提交</Button>
                 <Button type={"primary"} className={"button"}>取消</Button>
-            </div>
+            </ButtonArea>
         </div>
     )
 }
