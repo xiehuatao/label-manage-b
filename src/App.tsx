@@ -3,6 +3,7 @@ import {BrowserRouter, Switch} from "react-router-dom";
 import 'antd/dist/antd.min.css';
 import Management from "./components/information_management_function_page";
 import ManagementPage from "./components/information_management_page";
+import Classify from './pages/LabelManage/Classify';
 
 
 
@@ -12,10 +13,10 @@ function App() {
     <BrowserRouter>
       <Switch>
         {/*<Route path='/' component={Login} />*/}
-        {/*  <Classify/>*/}
+          <Classify/>
         {/*  <Management/>*/}
         {/*  <Classification/>*/}
-          <ManagementPage/>
+        {/*  <ManagementPage/>*/}
       </Switch>
     </BrowserRouter>
   );

@@ -4,16 +4,19 @@ import classify from './Classify.module.css';
 import { Button,Input,Switch,Table} from 'antd';
 import {Route} from "react-router-dom";
 import ManagementPage from "../../../components/information_management_page";
+import Classifis from './styled/Classifis';
+import Main from './styled/Main';
 
 
 
 const Classify = ()=>{
     return(
-        <div style={{position:"relative"}}>
+        <Main>
+        <div>
             <NavigationBar/>
-            <Route path={"/"} component={ClassifyPage}/>
-            <Route path={"/add"} component={ManagementPage}/>
-        </div>
+            <Route path={"/add"} component={ClassifyPage}/>
+            <Route path={"/"} component={ManagementPage}/>
+        </div></Main>
     )
 }
 
@@ -29,20 +32,20 @@ const ClassifyPage = ()=>{
 
 const Search = ()=>{
     return(
-        <div className={classify.div}>
+        <Classifis>
             <ClassifyName/>
             <ClassifyEncoded/>
             <Status/>
             <Button type="primary" style={{position:"absolute",left:830,top:22,width:75,height:35}}>搜索</Button>
-        </div>
+        </Classifis>
     )
 }
 
 const ClassifyName= ()=>{
     return(
-        <div className={classify.classifyName}>
+        <div className={"classifyName"}>
             <span >
-                <label className={classify.searchTitleFont}>类型</label>
+                <label className={"searchTitleFont"}>类型</label>
                 <br/>
                 <Input style={{width:232,height:30,borderColor:"black"}}/>
             </span>
@@ -51,9 +54,9 @@ const ClassifyName= ()=>{
 }
 const ClassifyEncoded= ()=>{
     return(
-        <div className={classify.classifyEncoded}>
+        <div className={"classifyEncoded"}>
             <span >
-                <label className={classify.searchTitleFont}>编码</label>
+                <label className={"searchTitleFont"}>编码</label>
                 <br/>
                 <Input style={{width:232,height:30,borderColor:"black"}}/>
             </span>
@@ -62,9 +65,9 @@ const ClassifyEncoded= ()=>{
 }
 const Status= ()=>{
     return(
-        <div className={classify.status}>
+        <div className={"status"}>
             <span >
-                <label className={classify.searchTitleFont}>状态</label>
+                <label className={"searchTitleFont"}>状态</label>
                 <br/>
                 <select style={{width:187,height:30,borderColor:"black"}}>
                     <option>所有</option>

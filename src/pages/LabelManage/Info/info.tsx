@@ -1,19 +1,19 @@
 import React from 'react';
 import ManagementPage from "../../../components/information_management_page";
 import NavigationBar from "../../../components/NavigationBar/NavigationBar";
-import infoStyle from "./Info.module.css"
+import Infosw from "./Info";
 
 const InfoManagement = ()=>{
     return(
-        <div>
-            <div className={infoStyle.navigationBar}>
+        <Infosw>
+            <div className={"navigationBar"}>
                 <NavigationBar/>
             </div>
 
-            <div className={infoStyle.managementPage}>
+            <div className={"managementPage"}>
                 <ManagementPage/>
             </div>
-        </div>
+        </Infosw>
     )
 }
 

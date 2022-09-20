@@ -1,10 +1,6 @@
-.div{
-    width: 1000px;
-    height:200px;
-    top:100px;
-    left:0px;
-    position: relative;
-}
+import styled from "styled-components";
+
+const Main=styled.div`
 .classifyName{
     width:232px;
     height:50px;
@@ -37,3 +33,6 @@
     position: relative;
     text-align: center;
 }
+
+`
+export default Main

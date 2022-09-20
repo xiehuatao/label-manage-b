@@ -1,11 +1,11 @@
 import {Button, Input, Select, Switch, Table} from "antd";
-import "./index.css"
 import {Option} from "antd/es/mentions";
 import * as React from "react";
 import Name from "./styled/Name";
 import Title from "../information_management_function_page/styled/Title";
 import Selects from "./styled/Select";
 import ButtonAre from "./styled/Buttonare";
+import Div from "./styled/All";
 
 const ManagementPage = () => {
     const columns=[
@@ -51,7 +51,7 @@ const ManagementPage = () => {
         }
     ]
     return(
-      <div>
+      <Div>
           <Name>
           <div>
               <Title>名称</Title>
@@ -84,7 +84,6 @@ const ManagementPage = () => {
               <div>
               </div>
               <Select className={"stateChoose"} defaultValue={" "}>
-
               </Select>
           </Selects>
           <Selects>
@@ -129,7 +128,7 @@ const ManagementPage = () => {
           <ButtonAre>
               <Table columns={columns} dataSource={dataSouse}></Table>
           </ButtonAre>
-      </div>
+      </Div>
   )
 }
 

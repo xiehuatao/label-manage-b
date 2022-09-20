@@ -1,4 +1,7 @@
-.infoInput{
+import styled from "styled-components";
+
+const Infomanage=styled.div`
+    .infoInput{
     width: 150px;
     height: 25px;
 }
@@ -11,3 +14,6 @@
     margin-left: 40px;
     margin-top: 20px;
 }
+
+`
+export default Infomanage

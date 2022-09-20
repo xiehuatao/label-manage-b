@@ -1,5 +1,4 @@
 import {Input, Switch, Select, Button, DatePicker} from "antd";
-import "./index.css"
 import * as React from "react";
 import {useRef, useState} from "react";
 import {Option} from "antd/es/mentions";
@@ -11,6 +10,7 @@ import ButtonArea from "./styled/ButtonArea";
 import DescribeArea from "./styled/DescribeArea";
 import Describe from "./styled/Describe";
 import TimeArea from "./styled/TimeArea";
+import Infomanage from "./styled/Infomanage";
 
 
 
@@ -30,7 +30,7 @@ function Management() {
             timeArea.current.style.display="none";
     }
     return(
-        <div>
+        <Infomanage>
             <BasicInfo>
                 <div>
                     <Required>*</Required><Title>标签名称</Title>
@@ -59,8 +59,6 @@ function Management() {
                 </div>
                 <Switch checkedChildren={"启用"} unCheckedChildren={"禁用"} defaultChecked />
             </BasicInfo>
-
-
             <Second>
             <BasicInfo>
                 <div><Title>所属分类</Title></div>
@@ -105,7 +103,7 @@ function Management() {
                 <Button type={"primary"} className={"button"}>提交</Button>
                 <Button type={"primary"} className={"button"}>取消</Button>
             </ButtonArea>
-        </div>
+        </Infomanage>
     )
 }
 export default Management
