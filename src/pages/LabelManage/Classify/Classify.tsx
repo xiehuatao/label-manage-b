@@ -1,32 +1,31 @@
 import React from 'react';
-import NavigationBar from "../../../components/NavigationBar/NavigationBar";
-import classify from './Classify.module.css';
 import { Button,Input,Switch,Table} from 'antd';
 import {Route} from "react-router-dom";
 import ManagementPage from "../../../components/information_management_page";
 import Classifis from './styled/Classifis';
 import Main from './styled/Main';
-
-
+import ClassifyPages from './styled/ClassifyPage';
+import Management from "../../../components/information_management_function_page";
 
 const Classify = ()=>{
     return(
         <Main>
         <div>
-            <NavigationBar/>
-            <Route path={"/add"} component={ClassifyPage}/>
-            <Route path={"/"} component={ManagementPage}/>
-        </div></Main>
+            <Route exact path={"/"} component={ClassifyPage}/>
+            <Route path={"/add"} component={ManagementPage}/>
+            <Route path={'/addManage'} component={Management}/>
+        </div>
+        </Main>
     )
 }
 
 const ClassifyPage = ()=>{
     return(
-        <div>
+        <ClassifyPages>
             <Search/>
             <AddBtn/>
             <ClassifyTable/>
-        </div>
+        </ClassifyPages>
     )
 }
 

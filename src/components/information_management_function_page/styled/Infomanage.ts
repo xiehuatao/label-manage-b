@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
 const Infomanage=styled.div`
-    .infoInput{
+    float:left;
+    margin-top:150px;
+.infoInput{
     width: 150px;
     height: 25px;
 }

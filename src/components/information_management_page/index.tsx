@@ -6,6 +6,10 @@ import Title from "../information_management_function_page/styled/Title";
 import Selects from "./styled/Select";
 import ButtonAre from "./styled/Buttonare";
 import Div from "./styled/All";
+import {Link} from "react-router-dom";
+import AddType from "./styled/addType";
+import {useRef} from "react";
+
 
 const ManagementPage = () => {
     const columns=[
@@ -47,9 +51,10 @@ const ManagementPage = () => {
             state: <Switch checkedChildren={"启用"} unCheckedChildren={"禁用"} defaultChecked />,
             period:'永久',
             classes:'系统标签',
-            operation:<div><span>查看</span>   <span>修改</span></div>
+            operation:<div><Link to={"/addManage"}>查看</Link>   <Link to={"/addManage"}>修改</Link></div>
         }
     ]
+    const addType=useRef<HTMLDivElement>(null);
     return(
       <Div>
           <Name>
@@ -122,12 +127,27 @@ const ManagementPage = () => {
               </Select>
           </Selects>
           <ButtonAre>
-              <Button type={"primary"} >新增</Button>
-              <Button type={"primary"} style={{marginLeft:40}}>添加标签分类</Button>
+             <Link to={"/addManage"}><Button type={"primary"} >新增</Button></Link>
+          <Button type={"primary"} style={{marginLeft:40}} onClick={()=>{
+              // @ts-ignore
+              addType.current.style.display="block";
+          }}>添加标签分类</Button>
           </ButtonAre>
+
           <ButtonAre>
+
               <Table columns={columns} dataSource={dataSouse}></Table>
+
           </ButtonAre>
+          <AddType ref={addType}>
+              <div><Title>标签名称</Title><Input/></div>
+              <div><Title>所属分类</Title><Input/></div>
+              <div style={{float:"left",marginRight:40,marginLeft:100,marginTop:20}}><Button type={"primary"}>确定</Button></div>
+              <div style={{marginTop:20}}><Button type={"primary"} onClick={()=>{
+                  // @ts-ignore
+                  addType.current.style.display="none"
+              }}>取消</Button></div>
+          </AddType>
       </Div>
   )
 }

@@ -11,6 +11,7 @@ import DescribeArea from "./styled/DescribeArea";
 import Describe from "./styled/Describe";
 import TimeArea from "./styled/TimeArea";
 import Infomanage from "./styled/Infomanage";
+import {useHistory} from "react-router-dom";
 
 
 
@@ -29,6 +30,11 @@ function Management() {
             // @ts-ignore
             timeArea.current.style.display="none";
     }
+    const history=useHistory();
+    const cancel = () => {
+        history.goBack()
+    }
+
     return(
         <Infomanage>
             <BasicInfo>
@@ -101,7 +107,9 @@ function Management() {
             </DescribeArea>
             <ButtonArea>
                 <Button type={"primary"} className={"button"}>提交</Button>
-                <Button type={"primary"} className={"button"}>取消</Button>
+                <Button type={"primary"} className={"button"} onClick={()=>{
+                    cancel()
+                }}>取消</Button>
             </ButtonArea>
         </Infomanage>
     )
