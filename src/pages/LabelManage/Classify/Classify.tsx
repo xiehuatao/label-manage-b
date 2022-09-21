@@ -1,11 +1,13 @@
 import React from 'react';
 import { Button,Input,Switch,Table} from 'antd';
-import {Route} from "react-router-dom";
+import {Link, Route} from "react-router-dom";
 import ManagementPage from "../../../components/information_management_page";
 import Classifis from './styled/Classifis';
 import Main from './styled/Main';
 import ClassifyPages from './styled/ClassifyPage';
 import Management from "../../../components/information_management_function_page";
+import AddButton from "../../../components/information_management_Classification_page/classify/buttonA/AddButton";
+import CheckButton from "../../../components/information_management_Classification_page/classify/buttonA/checkButton";
 
 const Classify = ()=>{
     return(
@@ -14,6 +16,8 @@ const Classify = ()=>{
             <Route exact path={"/"} component={ClassifyPage}/>
             <Route path={"/add"} component={ManagementPage}/>
             <Route path={'/addManage'} component={Management}/>
+            <Route path={"/addClass"} component={AddButton}/>
+            <Route path={"/checkClass"} component={CheckButton}/>
         </div>
         </Main>
     )
@@ -81,8 +85,8 @@ const Status= ()=>{
 const AddBtn = ()=>{
     return(
         // <button style={{position:"relative",left:66,top:-30,width:66,height:27}}>新增</button>
-        <Button type="primary" style={{position:"relative",left:66,top:-30,width:75,height:35}}>新增</Button>
-    )
+     <Link to={'/addClass'}><Button type="primary" style={{position:"relative",left:66,top:-30,width:75,height:35}}>新增</Button></Link>
+)
 }
 
 const ClassifyTable = ()=>{
@@ -94,7 +98,7 @@ const ClassifyTable = ()=>{
             describe:'123',
             availableUsers:'供应商',
             status:<Switch checkedChildren="启用" unCheckedChildren="禁用" defaultChecked />,
-            option:<div><Button type="link" style={{position:"absolute",left:0,top:15}}>查看</Button><Button type="link" style={{position:"absolute",left:40,top:15}}>修改</Button></div>
+            option:<div><Link to={'/checkClass'}  style={{position:"absolute",left:0,top:15}}>查看</Link><Link to={"/addClass"} style={{position:"absolute",left:40,top:15}}>修改</Link></div>
         },
     ];
 

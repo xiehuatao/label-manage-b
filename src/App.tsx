@@ -5,7 +5,6 @@ import Classify from './pages/LabelManage/Classify';
 import NavigationBar from "./components/NavigationBar/NavigationBar";
 
 
-
 function App() {
 
   return (
@@ -15,6 +14,8 @@ function App() {
         <Switch>
         {/*<Route path='/' component={Login} />*/}
           <Classify/>
+        {/*    <ClassifyFunction/>*/}
+        {/*    <CheckButton/>*/}
         {/*  <Management/>*/}
         {/*  <Classification/>*/}
         {/*  <ManagementPage/>*/}
