@@ -7,16 +7,16 @@ import Selects from "./styled/Select";
 import ButtonAre from "./styled/Buttonare";
 import Div from "./styled/All";
 import {Link} from "react-router-dom";
-import AddType from "./styled/addType";
-import {useRef} from "react";
+import {useRef, useState} from "react";
 
 
 const ManagementPage = () => {
-    const columns=[
+    //定义表格的每一列
+    const columns = [
         {
-            title:'名称',
-            dataIndex:'name',
-            key:'name'
+            title: '名称',
+            dataIndex: 'name',
+            key: 'name'
         },
         {
             title: '编码',
@@ -44,130 +44,185 @@ const ManagementPage = () => {
             key: 'operation'
         }
     ]
-    const dataSouse=[
+
+    //存储标签信息的状态
+    const [labInfo,setLabelInfo] = useState({
+        name:'1',
+        encode:'1',
+        grade:'全部',
+        top:'1',
+        type:'全部',
+        intype:'系统标签',
+        status:'全部'
+    });
+    //存储从后端获取的表格数据
+    const [tabInfo,setTabInfo] = useState([
         {
-            name:'重庆市',
-            code:'YBQ',
-            state: <Switch checkedChildren={"启用"} unCheckedChildren={"禁用"} defaultChecked />,
-            period:'永久',
-            classes:'系统标签',
-            operation:<div><Link to={"/addManage"} onClick={()=>{
-                        checkManage()
-                }
-            }>查看</Link>   <Link to={"/addManage"}>修改</Link></div>
+            name: "1",
+            code: '1',
+            state: true,
+            period: '1',
+            classes: '1',
+            operation: <div><Link to={"/addManage"}>查看</Link> <Link to={"/addManage"}>修改</Link></div>
+        },
+        {
+            name: "1",
+            code: '1',
+            state: true,
+            period: '1',
+            classes: '1',
+            operation: <div><Link to={"/addManage"}>查看</Link> <Link to={"/addManage"}>修改</Link></div>
         }
-    ]
-    const checkManage = () => {
-        // @ts-ignore
-      let links=CheckManage.current.getElementsByTagName("a");
-      // @ts-ignore
-      let checks=[];
-        for (let i = 0; i < links.length; i++) {
-            if (links[i].innerHTML==="查看"){
-                checks.push(links[i])
+    ]);
+    //存储渲染到页面上的表格的数据
+    const [dataSouse,setDataSouse]= useState([]);
+
+    //生命周期函数，把后端获取的数据放到表格的dataSouse
+    React.useEffect(()=>{
+            // axios({
+            //     method:"get",
+            //     url:"",
+            //     params:{labInfo}
+            // }).then(()=>{
+            //     // setTabInfo(response.data);
+            //     console.log(dataSouse);
+            //     dataSouse=tabInfo.map((item)=>{
+            //         return {
+            //             name: item.name,
+            //             code: item.code,
+            //             state: <Switch checkedChildren={"启用"} unCheckedChildren={"禁用"} checked={item.state}/>,
+            //             period:item.period,
+            //             classes: item.classes,
+            //             operation: <div><Link to={"/addManage"}>查看</Link> <Link to={"/addManage"}>修改</Link></div>
+            //         };
+            //     })
+            // })
+            const newDataSouse=tabInfo.map((item)=>{
+                return {
+                    name: item.name,
+                    code: item.code,
+                    state: <Switch checkedChildren={"启用"} unCheckedChildren={"禁用"} checked={item.state}/>,
+                    period:item.period,
+                    classes: item.classes,
+                    operation: <div><Link to={"/addManage"}>查看</Link> <Link to={"/addManage"}>修改</Link></div>
+                };
+            });
+
+            // @ts-ignore
+            setDataSouse(newDataSouse);
+
+            return ()=>{
+
             }
         }
-        for (let i = 0; i < checks.length; i++) {
-            console.log(dataSouse[i].code)
-        }
+        ,
+        [labInfo]
+    )
+
+    const addType = useRef<HTMLDivElement>(null);
+
+    //改变输入名称时
+    function changeName(value:any){
+        let label=labInfo;
+        label.name=value.target.value;
+        setLabelInfo(label);
+        console.log(value.target.value)
     }
-    const CheckManage=useRef<HTMLDivElement>(null)
-    const addType=useRef<HTMLDivElement>(null);
-    return(
-      <Div>
-          <Name>
-          <div>
-              <Title>名称</Title>
-          </div>
-             <Input className={"infoInput"}/>
-         </Name>
-          <Name>
-              <div>
-                <Title>编码</Title>
-              </div>
-              <Input/>
-          </Name>
-          <Selects>
-            <div>
-                <b>等级</b>
-            </div>
-            <div>
-            </div>
-           <Select className={"stateChoose"} defaultValue={"all"}>
-               <Option value={"all"}>全部</Option>
-               <Option value={"one"}>一级</Option>
-               <Option value={"two"}>二级</Option>
-               <Option value={"three"}>三级</Option>
-           </Select>
-        </Selects>
-          <Selects>
-              <div>
-                  <b>上级标签</b>
-              </div>
-              <div>
-              </div>
-              <Select className={"stateChoose"} defaultValue={" "}>
-              </Select>
-          </Selects>
-          <Selects>
-              <div>
-                  <b>类型</b>
-              </div>
-              <div>
-              </div>
-              <Select className={"stateChoose"} defaultValue={"all"}>
-                  <Option value={"all"}>全部</Option>
-                  <Option value={"one"}>普通标签</Option>
-                  <Option value={"two"}>组合标签</Option>
-              </Select>
-          </Selects>
-          <Selects>
-              <div>
-                  <b>所属分类</b>
-              </div>
-              <div>
-              </div>
-              <Select className={"stateChoose"} defaultValue={"one"}>
-                  <Option value={"one"}>系统标签</Option>
-                  <Option value={"two"}>自定义</Option>
-              </Select>
-          </Selects>
-          <Selects>
-              <div>
-                  <b>状态</b>
-              </div>
-              <div>
-              </div>
-              <Select className={"stateChoose"} defaultValue={"all"}>
-                  <Option value={"all"}>全部</Option>
-                  <Option value={"one"}>禁用</Option>
-                  <Option value={"two"}>启用</Option>
-              </Select>
-          </Selects>
-          <ButtonAre>
-             <Link to={"/addManage"}><Button type={"primary"} >新增</Button></Link>
-          <Button type={"primary"} style={{marginLeft:40}} onClick={()=>{
-              // @ts-ignore
-              addType.current.style.display="block";
-          }}>添加标签分类</Button>
-          </ButtonAre>
+    //改变输入编码时
+    function changeEncode(value:any){
+        let label=labInfo;
+        label.encode=value.target.value;
+        setLabelInfo(label);
+        console.log(value.target.value)
+    }
+    //改变等级时
+    function changeGrade(value:any){
+        let label=labInfo;
+        label.grade=value;
+        setLabelInfo(label);
+        console.log(value);
+    }
+    //改变上级标签时
+    function changeTop(value:any){
+        let label=labInfo;
+        label.top=value.target.value;
+        setLabelInfo(label);
+        console.log(value.target)
+    }
+    //改变标签类别时
+    function changeType(value:any){
+        let label=labInfo;
+        label.type=value;
+        setLabelInfo(label);
+        console.log(value)
+    }
+    //改变所属类型时
+    function changeIntype(value:any){
+        let label=labInfo;
+        label.intype=value;
+        setLabelInfo(label);
+        console.log(value)
+    }
+    //改变状态时
+    function changeStatus(value:any){
+        let label=labInfo;
+        label.status=value;
+        setLabelInfo(label);
+        console.log(value)
+    }
 
-          <ButtonAre>
+    const {Option} = Select
 
-              <Table columns={columns} dataSource={dataSouse} ref={CheckManage}></Table>
 
-          </ButtonAre>
-          <AddType ref={addType}>
-              <div><Title>标签名称</Title><Input/></div>
-              <div><Title>所属分类</Title><Input/></div>
-              <div style={{float:"left",marginRight:40,marginLeft:100,marginTop:20}}><Button type={"primary"}>确定</Button></div>
-              <div style={{marginTop:20}}><Button type={"primary"} onClick={()=>{
-                  // @ts-ignore
-                  addType.current.style.display="none"
-              }}>取消</Button></div>
-          </AddType>
-      </Div>
-  )
+    return (
+        <Div>
+            <Name>
+                <div>
+                    <Title>名称</Title>
+                </div>
+                <Input className={"labNamInput"} onChange={changeName} />
+            </Name>
+            <Name>
+                <div>
+                    <Title>编码</Title>
+                </div>
+                <Input onChange={changeEncode}/>
+            </Name>
+            <Selects>
+                <div>
+                    <b>所属分类</b>
+                </div>
+                <div>
+                </div>
+                <Select className={"stateChoose"} defaultValue={"系统标签"} onChange={changeIntype}>
+                    <Option value={"系统标签"}>系统标签</Option>
+                    <Option value={"自定义"}>自定义</Option>
+                </Select>
+            </Selects>
+            <Selects>
+                <div>
+                    <b>状态</b>
+                </div>
+                <div>
+                </div>
+                <Select className={"stateChoose"} defaultValue={"全部"} onChange={changeStatus}>
+                    <Option value={"全部"}>全部</Option>
+                    <Option value={"禁用"}>禁用</Option>
+                    <Option value={"启用"}>启用</Option>
+                </Select>
+            </Selects>
+            <Selects><Button type={"primary"}>搜索</Button></Selects>
+            <ButtonAre>
+                <Link to={"/addManage"}><Button type={"primary"}>新增</Button></Link>
+            </ButtonAre>
+
+            <ButtonAre>
+
+                <Table columns={columns} dataSource={dataSouse}></Table>
+
+            </ButtonAre>
+        </Div>
+    )
 }
 
 export default ManagementPage

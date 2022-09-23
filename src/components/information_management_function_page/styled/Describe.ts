@@ -5,6 +5,7 @@ const Describe=styled.textarea`
     width: 1000px;
     height: 200px;
     resize: none;
+    position:relative;
 `
 
 export default Describe
