@@ -104,7 +104,8 @@ const ManagementPage = () => {
                     state: <Switch checkedChildren={"启用"} unCheckedChildren={"禁用"} checked={item.state}/>,
                     period:item.period,
                     classes: item.classes,
-                    operation: <div><Link to={"/addManage"}>查看</Link> <Link to={"/addManage"}>修改</Link></div>
+                    operation: <div><Link to={{pathname:"/addManage",state:{code:item.code,operate:"check"}}}>查看</Link>
+                        <Link to={{pathname:"/addManage",state:{code: item.code,operate: "update"}}}>修改</Link></div>
                 };
             });
 
@@ -213,7 +214,7 @@ const ManagementPage = () => {
             </Selects>
             <Selects><Button type={"primary"}>搜索</Button></Selects>
             <ButtonAre>
-                <Link to={"/addManage"}><Button type={"primary"}>新增</Button></Link>
+                <Link to={{pathname:"/addManage",state:{operate:"add"}}}><Button type={"primary"}>新增</Button></Link>
             </ButtonAre>
 
             <ButtonAre>
