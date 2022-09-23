@@ -51,9 +51,27 @@ const ManagementPage = () => {
             state: <Switch checkedChildren={"启用"} unCheckedChildren={"禁用"} defaultChecked />,
             period:'永久',
             classes:'系统标签',
-            operation:<div><Link to={"/addManage"}>查看</Link>   <Link to={"/addManage"}>修改</Link></div>
+            operation:<div><Link to={"/addManage"} onClick={()=>{
+                        checkManage()
+                }
+            }>查看</Link>   <Link to={"/addManage"}>修改</Link></div>
         }
     ]
+    const checkManage = () => {
+        // @ts-ignore
+      let links=CheckManage.current.getElementsByTagName("a");
+      // @ts-ignore
+      let checks=[];
+        for (let i = 0; i < links.length; i++) {
+            if (links[i].innerHTML==="查看"){
+                checks.push(links[i])
+            }
+        }
+        for (let i = 0; i < checks.length; i++) {
+            console.log(dataSouse[i].code)
+        }
+    }
+    const CheckManage=useRef<HTMLDivElement>(null)
     const addType=useRef<HTMLDivElement>(null);
     return(
       <Div>
@@ -136,7 +154,7 @@ const ManagementPage = () => {
 
           <ButtonAre>
 
-              <Table columns={columns} dataSource={dataSouse}></Table>
+              <Table columns={columns} dataSource={dataSouse} ref={CheckManage}></Table>
 
           </ButtonAre>
           <AddType ref={addType}>
