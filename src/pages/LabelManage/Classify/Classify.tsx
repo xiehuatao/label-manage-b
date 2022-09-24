@@ -85,7 +85,7 @@ const Status= ()=>{
 const AddBtn = ()=>{
     return(
         // <button style={{position:"relative",left:66,top:-30,width:66,height:27}}>新增</button>
-     <Link to={'/addClass'}><Button type="primary" style={{position:"relative",left:66,top:-30,width:75,height:35}}>新增</Button></Link>
+     <Link to={{pathname:'/addClass',state:{operate:"add"}}}><Button type="primary" style={{position:"relative",left:66,top:-30,width:75,height:35}}>新增</Button></Link>
 )
 }
 
@@ -98,7 +98,10 @@ const ClassifyTable = ()=>{
             describe:'123',
             availableUsers:'供应商',
             status:<Switch checkedChildren="启用" unCheckedChildren="禁用" defaultChecked />,
-            option:<div><Link to={'/checkClass'}  style={{position:"absolute",left:0,top:15}}>查看</Link><Link to={"/addClass"} style={{position:"absolute",left:40,top:15}}>修改</Link></div>
+            option: <div>
+                    <Link to={{pathname:'/checkClass',state:{operate: "check"}}}  style={{position:"absolute",left:0,top:15}}>查看</Link>
+                    <Link to={{pathname:"/addClass",state:{operate:'update'}}} style={{position:"absolute",left:40,top:15}}>修改</Link>
+                    </div>
         },
     ];
 

@@ -58,20 +58,18 @@ const ManagementPage = () => {
     //存储从后端获取的表格数据
     const [tabInfo,setTabInfo] = useState([
         {
-            name: "1",
-            code: '1',
+            name: "区域",
+            code: 'AREA',
             state: true,
-            period: '1',
-            classes: '1',
-            operation: <div><Link to={"/addManage"}>查看</Link> <Link to={"/addManage"}>修改</Link></div>
+            period: '永久',
+            classes: '系统标签',
         },
         {
-            name: "1",
-            code: '1',
+            name: "重庆市",
+            code: 'YBQ',
             state: true,
-            period: '1',
-            classes: '1',
-            operation: <div><Link to={"/addManage"}>查看</Link> <Link to={"/addManage"}>修改</Link></div>
+            period: '永久',
+            classes: '系统标签',
         }
     ]);
     //存储渲染到页面上的表格的数据
@@ -211,7 +209,7 @@ const ManagementPage = () => {
                     <Option value={"禁用"}>禁用</Option>
                     <Option value={"启用"}>启用</Option>
                 </Select>
-            </Selects>
+            </Selects><br/>
             <Selects><Button type={"primary"}>搜索</Button></Selects>
             <ButtonAre>
                 <Link to={{pathname:"/addManage",state:{operate:"add"}}}><Button type={"primary"}>新增</Button></Link>

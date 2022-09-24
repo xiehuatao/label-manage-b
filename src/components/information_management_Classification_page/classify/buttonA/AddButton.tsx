@@ -4,12 +4,20 @@ import {Button} from "antd";
 import * as React from "react";
 import ClassifyFunction from "../classify";
 import {useHistory} from "react-router-dom";
+import {createContext} from "react";
 
+export const MyContext=createContext(null);
+const AddButton = (props:object) => {
 
-const AddButton = () => {
     const history=useHistory();
-    return(<div>
-        <ClassifyFunction/>
+    // @ts-ignore
+    const state=props.location.state.operate
+
+    return(
+        <div>
+            <MyContext.Provider value={state}>
+        <ClassifyFunction />
+            </MyContext.Provider>
         <ClassContent>
             <ButtonAreas>
                 <Button type={"primary"}>提交</Button></ButtonAreas>

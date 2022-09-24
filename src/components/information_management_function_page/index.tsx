@@ -52,9 +52,6 @@ const Management = (props:object) => {
                 // @ts-ignore
                 labelValue.current.input.disabled=true
                 setDisabled(true)
-
-
-
             }
             else if (state.operate==="update"){
                 // @ts-ignore
