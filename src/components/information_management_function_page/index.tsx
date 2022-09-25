@@ -1,7 +1,6 @@
 import {Input, Switch, Select, Button, DatePicker, Form, InputRef} from "antd";
 import * as React from "react";
 import {useEffect, useRef, useState} from "react";
-import {Option} from "antd/es/mentions";
 import BasicInfo from "./styled/BasicInfo";
 import Required from "./styled/Required";
 import Title from "./styled/Title";
@@ -17,6 +16,8 @@ import Service from "../../service/service";
 
 
 const Management = (props:object) => {
+    const dat={name:"",code:"",value:"",state:true,classes:"",timeType:"",begin:"",end:"",describe:""}
+    const [data,setDate]=useState(dat);
     const [time,setTime]=useState<String>("固定期限");
     const timeType=useRef<HTMLDivElement>(null);
     const timeArea=useRef<HTMLDivElement>(null);
@@ -35,16 +36,30 @@ const Management = (props:object) => {
     const cancel = () => {
         history.goBack()
     }
+    // @ts-ignore
+    const state=props.location.state;
+    const InitialData=()=>{
+
+        Service({
+            url:"/xxx",
+            data:{
+                code:state.code
+            }
+        }).then(function (response) {
+            console.log(response.data)
+            setDate(JSON.parse(response.data));
+        })
+    }
     const labelName=useRef<InputRef>(null)
     const labelCode=useRef<InputRef>(null)
     const labelValue=useRef<InputRef>(null)
     const labelState=useRef<HTMLElement>(null)
     const labelClasses=useRef(null)
-    // @ts-ignore
-    const state=props.location.state;
+
     const [disabled,setDisabled]=useState(false)
     useEffect(()=>{
             if (state.operate==="check"){
+                InitialData();
                 // @ts-ignore
                 labelName.current.input.disabled=true
                 // @ts-ignore
@@ -54,6 +69,7 @@ const Management = (props:object) => {
                 setDisabled(true)
             }
             else if (state.operate==="update"){
+                InitialData();
                 // @ts-ignore
                 labelName.current.input.disabled=true
                 // @ts-ignore
@@ -95,14 +111,14 @@ const onFinish = (values:any) => {
                 </div>
                 <div>
                     <Form.Item name={"name"}>
-                <Input className={"infoInput"} ref={labelName}/></Form.Item></div>
+                <Input className={"infoInput"} ref={labelName} value={data.name}/></Form.Item></div>
             </BasicInfo>
             <BasicInfo>
                 <div>
                     <Required>*</Required><Title>标签编码</Title>
                 </div>
                 <Form.Item name={"code"}>
-                    <Input className={"infoInput"} ref={labelCode}/>
+                    <Input className={"infoInput"} ref={labelCode} value={data.code}/>
                 </Form.Item>
 
             </BasicInfo>
@@ -113,7 +129,7 @@ const onFinish = (values:any) => {
                    <Title>标签值</Title>
                 </div>
                 <Form.Item name={"labelValue"}>
-                <Input className={"infoInput"} ref={labelValue}/></Form.Item>
+                <Input className={"infoInput"} ref={labelValue} value={data.value}/></Form.Item>
             </BasicInfo>
 
 
@@ -122,13 +138,13 @@ const onFinish = (values:any) => {
                     <Required>*</Required><Title>标签状态</Title>
                 </div>
                 <Form.Item name={"state"}>
-                <Switch checkedChildren={"启用"} unCheckedChildren={"禁用"} defaultChecked={true} ref={labelState} disabled={disabled} /></Form.Item>
+                <Switch checkedChildren={"启用"} unCheckedChildren={"禁用"} checked={data.state} ref={labelState} disabled={disabled} /></Form.Item>
             </BasicInfo>
             <Second>
             <BasicInfo>
                 <div><Title>所属分类</Title></div>
                 <Form.Item name={"classes"}>
-                <Select className={"classType"} defaultValue={"--"} ref={labelClasses} disabled={disabled}></Select></Form.Item>
+                <Select className={"classType"} inputValue={"--"} ref={labelClasses} disabled={disabled} value={data.classes}></Select></Form.Item>
             </BasicInfo>
 
             <BasicInfo ref={timeType}>
@@ -138,9 +154,9 @@ const onFinish = (values:any) => {
                 <Form.Item name={"timeType"}>
                 <Select className={"classType"} onChange={()=>{
                     showTimeSelect();
-                }} defaultValue={"永久"} disabled={disabled}>
-                    <Option key={"永久"}>永久</Option>
-                    <Option key={"固定期限"}>固定期限</Option>
+                }} inputValue={"永久"} disabled={disabled} value={data.timeType}>
+                    <Select.Option key={"永久"}>永久</Select.Option>
+                    <Select.Option key={"固定期限"}>固定期限</Select.Option>
                 </Select></Form.Item>
             </BasicInfo>
                 <TimeArea ref={timeArea}>
@@ -167,7 +183,7 @@ const onFinish = (values:any) => {
                         <Required>*</Required><Title>描述</Title>
                     </div>
                 <Form.Item name={"describe"}>
-                    <Describe disabled={disabled}/></Form.Item>
+                    <Describe disabled={disabled} value={data.describe}/></Form.Item>
             </DescribeArea>
             <ButtonArea>
                 <Button type={"primary"} className={"button"} htmlType={"submit"}>提交</Button>
