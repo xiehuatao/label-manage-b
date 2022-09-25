@@ -103,8 +103,8 @@ const ManagementPage = () => {
                     />,
                     period:item.period,
                     classes: item.classes,
-                    operation: <div><Link to={{pathname:"/addManage",state:{code:item.code,operate:"check"}}}>查看</Link>
-                        <Link to={{pathname:"/addManage",state:{code: item.code,operate: "update"}}}>修改</Link></div>
+                    operation: <div><Link to={{pathname:"/main/addManage",state:{code:item.code,operate:"check"}}}>查看</Link>
+                        <Link to={{pathname:"/main/addManage",state:{code: item.code,operate: "update"}}}>修改</Link></div>
                 };
             });
 
@@ -213,7 +213,7 @@ const ManagementPage = () => {
             </Selects><br/>
             <Selects><Button type={"primary"}>搜索</Button></Selects>
             <ButtonAre>
-                <Link to={{pathname:"/addManage",state:{operate:"add"}}}><Button type={"primary"}>新增</Button></Link>
+                <Link to={{pathname:"/main/addManage",state:{operate:"add"}}}><Button type={"primary"}>新增</Button></Link>
             </ButtonAre>
 
             <ButtonAre>

@@ -1,8 +1,8 @@
 import React from 'react';
-import {BrowserRouter, Switch} from "react-router-dom";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 import 'antd/dist/antd.min.css';
-import Classify from './pages/LabelManage/Classify';
-import NavigationBar from "./components/NavigationBar/NavigationBar";
+import Login from "./pages/Log/Login";
+import Main from "./pages/main/main";
 
 
 function App() {
@@ -10,10 +10,11 @@ function App() {
   return (
     <BrowserRouter>
 
-        <NavigationBar/>
+        {/*<NavigationBar/>*/}
         <Switch>
-        {/*<Route path='/' component={Login} />*/}
-          <Classify/>
+            <Route exact path='/' component={Login} />
+            <Route path={'/main'} component={Main}/>
+        {/*  <Classify/>*/}
         {/*    <ClassifyFunction/>*/}
         {/*    <CheckButton/>*/}
         {/*  <Management/>*/}

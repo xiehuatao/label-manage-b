@@ -90,12 +90,26 @@ const Management = (props:object) => {
     // })}
 
 const onFinish = (values:any) => {
-    console.log(values)
-
+    let {name,code,labelValue,state,classes,timeType,begin,end,describe}=values;
+    if (begin!==undefined&&end!==undefined){
+     end=end.format("YYYY-MM-DD")
+     begin=begin.format("YYYY-MM-DD")
+    }else {
+        end="0000-00-00"
+        begin="0000-00-0"
+    }
     Service({
         url:"/ss",
         data:{
-          values:values
+            name:name,
+            code:code,
+            labelValue:labelValue,
+            state:state,
+            classes:classes,
+            timeType:timeType,
+            begin:begin,
+            end:end,
+            describe:describe
         }
     }).then(function (response) {
         console.log(response.data)
@@ -144,7 +158,7 @@ const onFinish = (values:any) => {
             <BasicInfo>
                 <div><Title>所属分类</Title></div>
                 <Form.Item name={"classes"}>
-                <Select className={"classType"} inputValue={"--"} ref={labelClasses} disabled={disabled} value={data.classes}></Select></Form.Item>
+                <Select className={"classType"} defaultValue={"--"} ref={labelClasses} disabled={disabled} value={data.classes}></Select></Form.Item>
             </BasicInfo>
 
             <BasicInfo ref={timeType}>
@@ -154,7 +168,7 @@ const onFinish = (values:any) => {
                 <Form.Item name={"timeType"}>
                 <Select className={"classType"} onChange={()=>{
                     showTimeSelect();
-                }} inputValue={"永久"} disabled={disabled} value={data.timeType}>
+                }} defaultValue={"永久"} disabled={disabled} value={data.timeType}>
                     <Select.Option key={"永久"}>永久</Select.Option>
                     <Select.Option key={"固定期限"}>固定期限</Select.Option>
                 </Select></Form.Item>

@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const BaseURL='http://localhost:8080/';
+const BaseURL='http://localhost:10001/';
 
 const Service=axios.create({
     baseURL:BaseURL,

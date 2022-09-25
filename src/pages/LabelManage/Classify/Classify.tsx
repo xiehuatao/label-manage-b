@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button,Input,Switch,Table} from 'antd';
-import {Link, Route} from "react-router-dom";
+import {Link, Route,Switch as Switches} from "react-router-dom";
 import ManagementPage from "../../../components/information_management_page";
 import Classifis from './styled/Classifis';
 import Main from './styled/Main';
@@ -13,11 +13,13 @@ const Classify = ()=>{
     return(
         <Main>
         <div>
-            <Route exact path={"/"} component={ClassifyPage}/>
-            <Route path={"/add"} component={ManagementPage}/>
-            <Route path={'/addManage'} component={Management}/>
-            <Route path={"/addClass"} component={AddButton}/>
-            <Route path={"/checkClass"} component={CheckButton}/>
+            <Switches>
+            <Route exact path={"/main"} component={ClassifyPage}/>
+            <Route exact path={"/main/add"} component={ManagementPage}/>
+            <Route exact path={'/main/addManage'} component={Management}/>
+            <Route exact path={"/main/addClass"} component={AddButton}/>
+            <Route exact path={"/main/checkClass"} component={CheckButton}/>
+            </Switches>
         </div>
         </Main>
     )
@@ -39,7 +41,7 @@ const Search = ()=>{
             <ClassifyName/>
             <ClassifyEncoded/>
             <Status/>
-            <Button type="primary" style={{position:"absolute",left:830,top:22,width:75,height:35}}>搜索</Button>
+            <Button type="primary" style={{position:"absolute",left:830,top:22,width:75,height:35}} >搜索</Button>
         </Classifis>
     )
 }
@@ -85,7 +87,7 @@ const Status= ()=>{
 const AddBtn = ()=>{
     return(
         // <button style={{position:"relative",left:66,top:-30,width:66,height:27}}>新增</button>
-     <Link to={{pathname:'/addClass',state:{operate:"add"}}}><Button type="primary" style={{position:"relative",left:66,top:-30,width:75,height:35}}>新增</Button></Link>
+     <Link to={{pathname:'/main/addClass',state:{operate:"add"}}}><Button type="primary" style={{position:"relative",left:66,top:-30,width:75,height:35}}>新增</Button></Link>
 )
 }
 
@@ -99,8 +101,8 @@ const ClassifyTable = ()=>{
             availableUsers:'供应商',
             status:<Switch checkedChildren="启用" unCheckedChildren="禁用" defaultChecked />,
             option: <div>
-                    <Link to={{pathname:'/checkClass',state:{operate: "check"}}}  style={{position:"absolute",left:0,top:15}}>查看</Link>
-                    <Link to={{pathname:"/addClass",state:{operate:'update'}}} style={{position:"absolute",left:40,top:15}}>修改</Link>
+                    <Link to={{pathname:'/main/checkClass',state:{operate: "check"}}}  style={{position:"absolute",left:0,top:15}}>查看</Link>
+                    <Link to={{pathname:"/main/addClass",state:{operate:'update'}}} style={{position:"absolute",left:40,top:15}}>修改</Link>
                     </div>
         },
     ];

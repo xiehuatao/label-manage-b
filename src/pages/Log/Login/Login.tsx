@@ -2,6 +2,7 @@ import {Button, Checkbox, Form, Input, message} from 'antd';
 import React from 'react';
 import Wrapper from "./styled";
 import {useHistory} from "react-router-dom";
+import Service from "../../../service/service";
 
 const login = () => {
 
@@ -9,12 +10,25 @@ const login = () => {
 
   const onFinish = (values: any) => {
     const {password,username} = values;
-    if(password === '123456' && username === 'admin') {
-      message.success("登录成功");
-      history.push('/manage/classify-manage');
-    } else {
-      message.error("登录失败，请检查账户及密码是否争取");
-    }
+    Service({
+        url:"/user/login",
+        data:{
+            username:username,
+            password:password,
+        }
+    }).then(function (response) {
+        if (response.data.data===true){
+            message.success("登录成功");
+            history.push("/main")
+        }else {
+            message.error("登录失败，请检查账户及密码是否正确");
+        }
+    })
+    // if(password === '123456' && username === 'admin') {
+    //
+    // } else {
+    //
+    // }
   };
 
   return (

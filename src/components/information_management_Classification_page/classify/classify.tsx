@@ -10,7 +10,6 @@ import ClassContent from "./styled/classContent";
 import TypeChoose from "./styled/typeChoose";
 import {useContext, useEffect, useRef, useState} from "react";
 import {MyContext} from "./buttonA/AddButton";
-import {d} from "@pmmmwh/react-refresh-webpack-plugin/types/options";
 
 
 const ClassifyFunction = () => {
