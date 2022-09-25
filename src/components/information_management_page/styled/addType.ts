@@ -8,5 +8,6 @@ const AddType=styled.div`
     position:absolute;
     display:none;
     background-color:white;
+    
 `
 export default AddType
