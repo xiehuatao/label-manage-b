@@ -7,7 +7,7 @@ import Selects from "./styled/Select";
 import ButtonAre from "./styled/Buttonare";
 import Div from "./styled/All";
 import {Link} from "react-router-dom";
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 
 
 const ManagementPage = () => {
@@ -44,7 +44,6 @@ const ManagementPage = () => {
             key: 'operation'
         }
     ]
-
     //存储标签信息的状态
     const [labInfo,setLabelInfo] = useState({
         name:'1',
@@ -60,7 +59,7 @@ const ManagementPage = () => {
         {
             name: "区域",
             code: 'AREA',
-            state: true,
+            state: false,
             period: '永久',
             classes: '系统标签',
         },
@@ -76,7 +75,7 @@ const ManagementPage = () => {
     const [dataSouse,setDataSouse]= useState([]);
 
     //生命周期函数，把后端获取的数据放到表格的dataSouse
-    React.useEffect(()=>{
+    useEffect(()=>{
             // axios({
             //     method:"get",
             //     url:"",
@@ -99,7 +98,9 @@ const ManagementPage = () => {
                 return {
                     name: item.name,
                     code: item.code,
-                    state: <Switch checkedChildren={"启用"} unCheckedChildren={"禁用"} checked={item.state}/>,
+                    state: <Switch checkedChildren={"启用"} unCheckedChildren={"禁用"} checked={item.state}
+
+                    />,
                     period:item.period,
                     classes: item.classes,
                     operation: <div><Link to={{pathname:"/addManage",state:{code:item.code,operate:"check"}}}>查看</Link>
